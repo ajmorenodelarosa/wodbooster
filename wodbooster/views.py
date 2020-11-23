@@ -104,18 +104,13 @@ class BookingAdmin(sqla.ModelView):
     form = BookingForm
 
     column_labels = dict(dow='Day of the week')
-    column_list = ('dow', 'time')
+    column_list = ('dow', 'time', 'booked_at')
 
     def get_list(self, *args, **kwargs):
         count, data = super(BookingAdmin, self).get_list(*args, **kwargs)
         for item in data:
             item.dow = calendar.day_name[item.dow]
         return count, data
-
-    def validate_form(self, form):
-        if 'dow' in form and form.dow.data:
-            form.dow.data = int(form.dow.data)
-        return super(BookingAdmin, self).validate_form(form)
 
     def is_accessible(self):
         return login.current_user.is_authenticated
