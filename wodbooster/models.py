@@ -11,6 +11,7 @@ class Booking(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User')
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     password = db.Column(db.String(100))
