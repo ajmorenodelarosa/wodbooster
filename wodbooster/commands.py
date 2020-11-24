@@ -15,7 +15,7 @@ def book(offset, url='https://contact.wodbuster.com'):
     dow = today.weekday()
     dows = [(dow + i) % 7 for i in list(range(int(offset) + 1))]
     dow_map = dict(zip(dows, list(range(int(offset) + 1))))
-    bookings = list(db.session.query(Booking).filter(and_(or_(Booking.booked_at < today, Booking.booked_at == None), Booking.dow.in_(dows))).all())
+    bookings = list(db.session.query(Booking).filter(and_(or_(Booking.booked_at < (today - datetime.timedelta(days=int(offset))), Booking.booked_at == None), Booking.dow.in_(dows))).all())
 
     for booking in bookings:
         scraper = Scraper(url)
