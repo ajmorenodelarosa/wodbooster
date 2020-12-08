@@ -56,6 +56,6 @@ class Scraper():
               _id = _class['Valores'][0]['Valor']['Id']
               response = self.session.get(self.url + '/athlete/handlers/Calendario_Inscribir.ashx?id=%s&ticks=%s' % (_id, t))
               if response.status_code == 200:
-                  return True
+                  return response.json()['Res']['EsCorrecto']
 
       return False
