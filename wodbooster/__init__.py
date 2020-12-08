@@ -36,6 +36,7 @@ if not os.path.exists(database_path):
 else:
     db.init_app(app)
 
+
 def init_login():
     login_manager = login.LoginManager()
     login_manager.init_app(app)

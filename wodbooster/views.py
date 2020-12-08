@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, db
 import calendar
 
+
 class LoginForm(form.Form):
     email = fields.StringField(validators=[validators.required()])
     password = fields.PasswordField(validators=[validators.required()])
@@ -38,6 +39,7 @@ class RegistrationForm(form.Form):
 
 # Create customized index view class that handles login & registration
 class MyAdminIndexView(AdminIndexView):
+
     def is_visible(self):
         # This view won't appear in the menu structure
         return False
